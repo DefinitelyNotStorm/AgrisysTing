@@ -78,7 +78,7 @@ public class AnimalRepository
         }
         catch (SQLException e)
         {
-            System.out.println("Fejl ved stop af registrering.");
+            System.out.println("Fejl ved stop af registrering");
             e.printStackTrace();
         }
 
@@ -135,7 +135,7 @@ public class AnimalRepository
         }
         catch (SQLException e)
         {
-            System.out.println("Fejl ved oprettelse af gris.");
+            System.out.println("Fejl ved oprettelse af gris");
             e.printStackTrace();
         }
 

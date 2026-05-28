@@ -19,8 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-//Controlleren styrer dashboard-view.fxml.
-//Dashboardet fungerer som programmets hovedmenu.
+//Controlleren styrer dashboard-view.fxml
+//Dashboardet fungerer som programmets hovedmenu
 public class DashboardController
 {
     @FXML
@@ -71,7 +71,7 @@ public class DashboardController
         if (user == null)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Ingen bruger er logget ind.");
+            messageLabel.setText("Ingen bruger er logget ind");
             return;
         }
 
@@ -115,7 +115,7 @@ public class DashboardController
         else
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Ukendt rolle: " + role);
+            messageLabel.setText("Ukendt rolle " + role);
         }
     }
 
@@ -130,13 +130,13 @@ public class DashboardController
 
             Stage stage = (Stage) messageLabel.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Griseoversigt");
+            stage.setTitle("Agrisys PPT Griseoversigt");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne griseoversigt.");
+            messageLabel.setText("Kunne ikke åbne griseoversigt");
 
             e.printStackTrace();
         }
@@ -153,13 +153,13 @@ public class DashboardController
 
             Stage stage = (Stage) messageLabel.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Visits / Målinger");
+            stage.setTitle("Agrisys PPT Visits & Målinger");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne visits.");
+            messageLabel.setText("Kunne ikke åbne visits");
 
             e.printStackTrace();
         }
@@ -176,13 +176,13 @@ public class DashboardController
 
             Stage stage = (Stage) messageLabel.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Hændelser");
+            stage.setTitle("Agrisys PPT Hændelser");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne hændelser.");
+            messageLabel.setText("Kunne ikke åbne hændelser");
 
             e.printStackTrace();
         }
@@ -193,7 +193,7 @@ public class DashboardController
     {
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.setTitle("Vælg CSV-fil til import");
+        fileChooser.setTitle("Vælg CSV fil til import");
 
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("CSV filer", "*.csv")
@@ -205,6 +205,7 @@ public class DashboardController
 
         if (selectedFile == null)
         {
+            //Rød tekst
             messageLabel.setStyle("-fx-text-fill: red;");
             messageLabel.setText("Ingen fil valgt.");
             return;
@@ -212,8 +213,9 @@ public class DashboardController
 
         int importedCount = importService.importAnimalsFromCsv(selectedFile.getAbsolutePath());
 
+        //Grøn tekst
         messageLabel.setStyle("-fx-text-fill: green;");
-        messageLabel.setText("Import færdig. Antal importerede grise: " + importedCount);
+        messageLabel.setText("Import færdig. Antal importerede grise " + importedCount);
     }
 
     @FXML
@@ -237,7 +239,7 @@ public class DashboardController
         if (selectedFile == null)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Skabelon blev ikke gemt.");
+            messageLabel.setText("Skabelon blev ikke gemt");
             return;
         }
 
@@ -246,12 +248,12 @@ public class DashboardController
         if (success)
         {
             messageLabel.setStyle("-fx-text-fill: green;");
-            messageLabel.setText("Importskabelon gemt: " + selectedFile.getName());
+            messageLabel.setText("Importskabelon gemt " + selectedFile.getName());
         }
         else
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke gemme importskabelon.");
+            messageLabel.setText("Kunne ikke gemme importskabelon");
         }
     }
 
@@ -267,13 +269,13 @@ public class DashboardController
 
             Stage stage = (Stage) messageLabel.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Analyse");
+            stage.setTitle("Agrisys PPT Analyse");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne analyse.");
+            messageLabel.setText("Kunne ikke åbne analyse");
 
             e.printStackTrace();
         }
@@ -284,7 +286,7 @@ public class DashboardController
     {
         FileChooser fileChooser = new FileChooser();
 
-        fileChooser.setTitle("Gem CSV-fil");
+        fileChooser.setTitle("Gem CSV fil");
 
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("CSV filer", "*.csv")
@@ -299,7 +301,7 @@ public class DashboardController
         if (selectedFile == null)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Eksport annulleret.");
+            messageLabel.setText("Eksport blev annulleret");
             return;
         }
 
@@ -308,12 +310,12 @@ public class DashboardController
         if (success)
         {
             messageLabel.setStyle("-fx-text-fill: green;");
-            messageLabel.setText("Eksport færdig: " + selectedFile.getName());
+            messageLabel.setText("Eksport færdig " + selectedFile.getName());
         }
         else
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Eksport fejlede.");
+            messageLabel.setText("Eksport fejlede");
         }
     }
 
@@ -330,13 +332,13 @@ public class DashboardController
 
             Stage stage = (Stage) messageLabel.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Login");
+            stage.setTitle("Agrisys PPT Login");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke logge ud.");
+            messageLabel.setText("Kunne ikke logge ud");
 
             e.printStackTrace();
         }

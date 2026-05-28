@@ -147,3 +147,18 @@ public class Animal
         isActive = active;
     }
 }
+
+/*
+Getter = Bruges til at hente/vise værdien fra en variabel i objektet
+Setter = Bruges til at ændre/opdatere værdien i en variabel
+get = Returnerer en værdi
+set = Ændrer en værdi
+isActive() bruges fordi variablen er boolean
+Boolean betyder true eller false
+Constructor = Bruges til at oprette et nyt object med data
+this. = Henviser til variablen i klassen/objectet
+public = Andre klasser må bruge metoden
+return = Sender en værdi tilbage fra metoden
+double = Decimaltal
+boolean = True eller false
+*/

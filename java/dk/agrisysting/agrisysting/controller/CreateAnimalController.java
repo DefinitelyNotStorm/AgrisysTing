@@ -104,25 +104,25 @@ public class CreateAnimalController
             if (success)
             {
                 messageLabel.setStyle("-fx-text-fill: green;");
-                messageLabel.setText("Grisen blev oprettet.");
+                messageLabel.setText("Grisen blev oprettet :))");
             }
             else
             {
                 messageLabel.setStyle("-fx-text-fill: red;");
-                messageLabel.setText("Grisen kunne ikke oprettes.");
+                messageLabel.setText("Grisen kunne ikke oprettes :((");
             }
         }
         catch (NumberFormatException e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Tjek at talfelterne er skrevet korrekt.");
+            messageLabel.setText("Tjek at talfelterne er skrevet korrekt rah");
 
             e.printStackTrace();
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Der skete en fejl ved oprettelse.");
+            messageLabel.setText("Der skete en fejl ved oprettelse");
 
             e.printStackTrace();
         }
@@ -140,13 +140,13 @@ public class CreateAnimalController
 
             Stage stage = (Stage) animalNumberField.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Griseoversigt");
+            stage.setTitle("Agrisys PPT Griseoversigt");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne griseoversigt.");
+            messageLabel.setText("Kunne ikke åbne griseoversigt");
 
             e.printStackTrace();
         }

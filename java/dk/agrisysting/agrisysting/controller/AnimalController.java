@@ -1,5 +1,5 @@
 package dk.agrisysting.agrisysting.controller;
-//Mappen filen ligger i.
+//Mappen filen ligger i
 
 import dk.agrisysting.agrisysting.HelloApplication;
 import dk.agrisysting.agrisysting.model.Animal;
@@ -24,52 +24,69 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-//Controlleren styrer animals-view.fxml.
-//Den henter grise fra databasen og viser dem i en TableView.
-//Den kan også filtrere grise og stoppe registrering af en gris.
+/*
+Controlleren styrer animals-view.fxml
+Den henter grise fra databasen & viser dem i en TableView
+Den kan også filtrere grise, stoppe registrering og åbne opret gris siden
+*/
 public class AnimalController
 {
     @FXML
     private TableView<Animal> animalTable;
+    //TableView er selve tabellen hvor grisene bliver vist
 
     @FXML
     private TableColumn<Animal, String> animalNumberColumn;
+    //Kolonne til dyrenummer
 
     @FXML
     private TableColumn<Animal, String> responderColumn;
+    //Kolonne til responder
 
     @FXML
     private TableColumn<Animal, String> groupNameColumn;
+    //Kolonne til gruppe
 
     @FXML
     private TableColumn<Animal, String> locationNameColumn;
+    //Kolonne til lokation
 
     @FXML
     private TableColumn<Animal, Number> startWeightColumn;
+    //Kolonne til startvægt
 
     @FXML
     private TableColumn<Animal, Number> endWeightColumn;
+    //Kolonne til slutvægt
 
     @FXML
     private TableColumn<Animal, Number> feedIntakeColumn;
+    //Kolonne til foderindtag
 
     @FXML
     private TableColumn<Animal, Number> fcrColumn;
+    //Kolonne til FCR
 
     @FXML
     private TableColumn<Animal, String> activeColumn;
+    //Kolonne som viser om grisen er aktiv eller inaktiv
 
     @FXML
     private TextField searchField;
+    //Tekstfeltet hvor jeg kan søge/filtere i grisene
 
     @FXML
     private Label messageLabel;
+    //Label bruges til at vise beskeder til brugeren
 
     private AnimalRepository animalRepository;
+    //Repository bruges til at hente & ændre grise i databasen
 
     private ArrayList<Animal> alleAnimals;
+    //Denne liste gemmer alle grise fra databasen
 
     public AnimalController()
+    //Constructor kører når controlleren oprettes
     {
         animalRepository = new AnimalRepository();
 
@@ -78,6 +95,11 @@ public class AnimalController
 
     @FXML
     private void initialize()
+    /*
+    Initialize kører automatisk når FXML siden åbnes
+    Her sætter jeg først tabellens kolonner op
+    Derefter henter jeg grisene fra databasen
+    */
     {
         setupTableColumns();
 
@@ -85,6 +107,10 @@ public class AnimalController
     }
 
     private void setupTableColumns()
+    /*
+    Her bestemmer jeg hvilke data fra Animal objectet der skal vises i tabellen
+    Hver kolonne kobles til en getter fra Animal klassen
+    */
     {
         animalNumberColumn.setCellValueFactory(data ->
                 new SimpleStringProperty(data.getValue().getAnimalNumber()));
@@ -125,19 +151,71 @@ public class AnimalController
 
     @FXML
     private void loadAnimals()
+    /*
+    Denne metode henter alle grise fra databasen
+    Derefter sorterer jeg grisene med bubble sort efter vægtøgning
+    Til sidst bliver listen vist i tabellen
+    */
     {
         alleAnimals = animalRepository.hentAlleAnimals();
 
-        ObservableList<Animal> animalObservableList = FXCollections.observableArrayList(alleAnimals);
+        bubbleSortAnimalsByWeightGain();
+        //Her sorterer jeg listen før den bliver vist i tabellen
+
+        ObservableList<Animal> animalObservableList =
+                FXCollections.observableArrayList(alleAnimals);
 
         animalTable.setItems(animalObservableList);
 
         messageLabel.setStyle("-fx-text-fill: green;");
-        messageLabel.setText("Antal grise vist: " + alleAnimals.size());
+        messageLabel.setText("Antal grise vist: " + alleAnimals.size() + " sorteret efter vægtøgning");
+    }
+
+    private void bubbleSortAnimalsByWeightGain()
+    /*
+    Denne metode sorterer grisene efter WeightGainKg
+    Jeg bruger bubble sort her for at vise en simpel sorteringsalgoritme i Java
+
+    Bubble sort fungerer ved at sammenligne to grise ved siden af hinanden
+    Hvis den næste gris har større vægtøgning end den nuværende gris
+    så bytter jeg dem rundt i listen
+
+    Det gentages flere gange indtil grisene står sorteret
+    med den største vægtøgning øverst
+    */
+    {
+        for (int i = 0; i < alleAnimals.size() - 1; i++)
+        //Det yderste loop bestemmer hvor mange gange listen skal gennemgås
+        {
+            for (int j = 0; j < alleAnimals.size() - i - 1; j++)
+            //Det inderste loop sammenligner to grise ved siden af hinanden
+            {
+                Animal currentAnimal = alleAnimals.get(j);
+                //Den gris jeg står på lige nu
+
+                Animal nextAnimal = alleAnimals.get(j + 1);
+                //Den næste gris i listen
+
+                if (currentAnimal.getWeightGainKg() < nextAnimal.getWeightGainKg())
+                /*
+                Hvis næste gris har større vægtøgning end den nuværende gris
+                så skal de bytte plads
+                */
+                {
+                    alleAnimals.set(j, nextAnimal);
+
+                    alleAnimals.set(j + 1, currentAnimal);
+                }
+            }
+        }
     }
 
     @FXML
     private void handleSearch()
+    /*
+    Denne metode filtrerer grisene ud fra det jeg skriver i søgefeltet
+    Der søges på dyrenummer, gruppe, lokation & responder
+    */
     {
         String searchText = searchField.getText().toLowerCase();
 
@@ -161,54 +239,58 @@ public class AnimalController
             }
         }
 
-        ObservableList<Animal> animalObservableList = FXCollections.observableArrayList(filteredAnimals);
+        ObservableList<Animal> animalObservableList =
+                FXCollections.observableArrayList(filteredAnimals);
 
         animalTable.setItems(animalObservableList);
 
         messageLabel.setStyle("-fx-text-fill: green;");
-        messageLabel.setText("Filter viser: " + filteredAnimals.size() + " grise.");
+        messageLabel.setText("Filter viser: " + filteredAnimals.size() + " grise");
     }
 
     @FXML
     private void handleClearFilter()
+    //Denne metode nulstiller søgefeltet og viser alle grise igen "skulle den gerne"
     {
         searchField.clear();
 
-        ObservableList<Animal> animalObservableList = FXCollections.observableArrayList(alleAnimals);
+        ObservableList<Animal> animalObservableList =
+                FXCollections.observableArrayList(alleAnimals);
 
         animalTable.setItems(animalObservableList);
 
         messageLabel.setStyle("-fx-text-fill: green;");
-        messageLabel.setText("Filter nulstillet. Antal grise vist: " + alleAnimals.size());
+        messageLabel.setText("Filter nulstillet antal grise vist: " + alleAnimals.size());
     }
 
     @FXML
     private void handleStopRegistration()
-    //Denne metode stopper registrering af den gris brugeren har valgt i tabellen
+    /*
+    Denne metode stopper registrering af den gris jeg har valgt i tabellen
+    Det betyder at IsActive bliver sat til 0 i databasen
+    */
     {
         Animal selectedAnimal = animalTable.getSelectionModel().getSelectedItem();
-        //Her henter vi den gris som brugeren har markeret i tabellen
+        //Her henter jeg den gris som er markeret i tabellen
 
         if (selectedAnimal == null)
-        //Hvis brugeren ikke har valgt en gris
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Vælg en gris først.");
+            messageLabel.setText("Vælg en gris først");
 
             return;
         }
 
         if (!selectedAnimal.isActive())
-        //Hvis grisen allerede er inaktiv
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Denne gris er allerede inaktiv.");
+            messageLabel.setText("Denne gris er allerede inaktiv");
 
             return;
         }
 
         boolean success = animalRepository.stopRegistrering(selectedAnimal.getAnimalId());
-        //Her kalder vi repository-metoden som opdaterer databasen
+        //Her kalder jeg repository metoden som opdaterer databasen
 
         if (success)
         {
@@ -216,60 +298,62 @@ public class AnimalController
             messageLabel.setText("Registrering stoppet for gris: " + selectedAnimal.getAnimalNumber());
 
             loadAnimals();
-            //Opdaterer listen, så status ændres til Inaktiv
+            //Listen hentes igen så status ændres til Inaktiv
         }
         else
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke stoppe registrering.");
-        }
-    }
-
-    @FXML
-    private void handleBackToDashboard()
-    {
-        try
-        {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard-view.fxml"));
-
-            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
-
-            Stage stage = (Stage) animalTable.getScene().getWindow();
-
-            stage.setTitle("Agrisys PPT - Hovedmenu");
-            stage.setScene(scene);
-        }
-        catch (Exception e)
-        {
-            messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne hovedmenu.");
-
-            e.printStackTrace();
+            messageLabel.setText("Kunne ikke stoppe registrering");
         }
     }
 
     @FXML
     private void handleOpenCreateAnimal()
-    //Denne metode åbner siden hvor brugeren kan oprette en ny gris
+    //Denne metode åbner siden hvor jeg kan oprette en ny gris
     {
         try
         {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("create-animal-view.fxml"));
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(HelloApplication.class.getResource("create-animal-view.fxml"));
 
             Scene scene = new Scene(fxmlLoader.load(), 500, 650);
 
             Stage stage = (Stage) animalTable.getScene().getWindow();
 
-            stage.setTitle("Agrisys PPT - Opret gris");
+            stage.setTitle("Agrisys PPT Opret gris");
             stage.setScene(scene);
         }
         catch (Exception e)
         {
             messageLabel.setStyle("-fx-text-fill: red;");
-            messageLabel.setText("Kunne ikke åbne opret gris.");
+            messageLabel.setText("Kunne ikke åbne opret gris");
 
             e.printStackTrace();
         }
     }
 
+    @FXML
+    private void handleBackToDashboard()
+    //Denne metode sender mig tilbage til hovedmenuen
+    {
+        try
+        {
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(HelloApplication.class.getResource("dashboard-view.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load(), 600, 550);
+
+            Stage stage = (Stage) animalTable.getScene().getWindow();
+
+            stage.setTitle("Agrisys PPT Hovedmenu");
+            stage.setScene(scene);
+        }
+        catch (Exception e)
+        {
+            messageLabel.setStyle("-fx-text-fill: red;");
+            messageLabel.setText("Kunne ikke åbne hovedmenu");
+
+            e.printStackTrace();
+        }
+    }
 }
