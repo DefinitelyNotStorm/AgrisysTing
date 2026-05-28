@@ -77,3 +77,44 @@
     </bottom>
 
 </BorderPane>
+
+
+<!--
+FXML bruges til at bygge brugerfladen i JavaFX
+Her beskriver jeg hvordan knapper labels tabeller osv skal se ud og placeres
+
+fx:controller kobler FXML filen sammen med dens controller klasse i Java
+
+VBox = Lægger elementer lodret under hinanden
+HBox = Lægger elementer vandret ved siden af hinanden
+BorderPane = Deler siden op i top center bund højre og venstre
+
+padding = Luft rundt om elementerne
+spacing = Afstand mellem elementer inde i VBox eller HBox
+alignment = Bestemmer hvordan elementerne placeres
+
+Label = Viser tekst i brugerfladen
+Button = Knap brugeren kan trykke på
+TextField = Tekstfelt brugeren kan skrive i
+PasswordField = Tekstfelt hvor teksten skjules
+TableView = Tabel som viser data fra databasen
+TableColumn = En kolonne inde i tabellen
+Separator = En streg som deler indhold op
+
+fx:id bruges til at forbinde et element med Java koden i controlleren
+onAction bruges når en knap skal kalde en metode i controlleren
+
+prefWidth og prefHeight bestemmer standard størrelse på elementer eller vinduer
+style bruges til hurtig styling direkte i FXML filen
+
+XML er bygget op med tags
+Et åbne tag starter et element
+Et lukke tag afslutter elementet
+
+Eksempel
+<VBox>
+    <Label text="Hej"/>
+</VBox>
+
+Det betyder at Label ligger inde i VBoxen
+-->

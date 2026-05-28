@@ -14,7 +14,7 @@ public class Launcher
 
         if (user != null)
         {
-            System.out.println("Login via service OK:");
+            System.out.println("Login via service OK");
             System.out.println(user.getUsername() + " - " + user.getRole());
         }
         else

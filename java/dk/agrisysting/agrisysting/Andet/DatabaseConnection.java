@@ -53,7 +53,7 @@ public class DatabaseConnection
         //Connection a er bare en "test forbindelse" til databasen
         //try with resources skal lukke forbindelsen automatisk bagefter
         {
-            System.out.println("Forbindelse OK til databasen: " + DATABASE);
+            System.out.println("Forbindelse OK til databasen" + DATABASE);
             //Hvis forbindelsen virker printer jeg en besked i konsollen så jeg kan se det virker
         }
         catch (SQLException e)

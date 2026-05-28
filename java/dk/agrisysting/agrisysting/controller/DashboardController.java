@@ -77,7 +77,7 @@ public class DashboardController
 
         String role = user.getRole();
 
-        userLabel.setText("Logget ind som: " + user.getUsername() + " (" + role + ")");
+        userLabel.setText("Logget ind som " + user.getUsername() + " (" + role + ")");
 
         if (role.equalsIgnoreCase("Admin"))
         {
