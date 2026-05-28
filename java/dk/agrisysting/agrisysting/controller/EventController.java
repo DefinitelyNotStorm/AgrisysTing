@@ -87,6 +87,8 @@ public class EventController
     Først sætter jeg kolonnerne op
     Derefter henter jeg events fra databasen
     */
+
+
     {
         setupTableColumns();
 
