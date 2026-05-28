@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dk.agrisysting.agrisysting.controller.DashboardController"
+      alignment="CENTER"
+      spacing="15"
+      prefWidth="600"
+      prefHeight="550">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Agrisys PPT"
+           style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+
+    <Label text="Hovedmenu"
+           style="-fx-font-size: 18px;" />
+
+    <Label fx:id="userLabel"
+           text=""
+           style="-fx-text-fill: #333333;" />
+
+    <Button fx:id="animalsButton"
+            text="Grise"
+            onAction="#handleAnimals"
+            prefWidth="250" />
+
+    <Button fx:id="visitsButton"
+            text="Visits / Målinger"
+            onAction="#handleVisits"
+            prefWidth="250" />
+
+    <Button fx:id="eventsButton"
+            text="Hændelser"
+            onAction="#handleEvents"
+            prefWidth="250" />
+
+    <Button fx:id="importButton"
+            text="Import"
+            onAction="#handleImport"
+            prefWidth="250" />
+
+    <Button fx:id="templateButton"
+            text="Generer importskabelon"
+            onAction="#handleGenerateTemplate"
+            prefWidth="250" />
+
+    <Button fx:id="exportButton"
+            text="Eksport"
+            onAction="#handleExport"
+            prefWidth="250" />
+
+    <Button text="Log ud"
+            onAction="#handleLogout"
+            prefWidth="250" />
+
+    <Button fx:id="analysisButton"
+            text="Analyse"
+            onAction="#handleAnalysis"
+            prefWidth="250" />
+
+    <Label fx:id="messageLabel"
+           text=""
+           style="-fx-text-fill: green;" />
+
+</VBox>

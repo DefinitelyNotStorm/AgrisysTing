@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dk.agrisysting.agrisysting.controller.LoginController"
+      alignment="CENTER"
+      spacing="15"
+      prefWidth="500"
+      prefHeight="400">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Agrisys PPT Login"
+           style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+    <TextField fx:id="usernameField"
+               promptText="Brugernavn"
+               maxWidth="250" />
+
+    <PasswordField fx:id="passwordField"
+                   promptText="Adgangskode"
+                   maxWidth="250" />
+
+    <Button text="Log ind"
+            onAction="#handleLogin"
+            maxWidth="250" />
+
+    <Label fx:id="messageLabel"
+           text=""
+           style="-fx-text-fill: red;" />
+
+</VBox>

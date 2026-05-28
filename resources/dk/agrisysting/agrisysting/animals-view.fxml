@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.agrisysting.agrisysting.controller.AnimalController"
+            prefWidth="950"
+            prefHeight="600">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+
+            <Label text="Griseoversigt"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+            <Label text="Her vises de grise, som er registreret i databasen." />
+
+            <HBox spacing="10" alignment="CENTER_LEFT">
+
+                <TextField fx:id="searchField"
+                           promptText="Søg på dyrenummer, gruppe, lokation eller responder"
+                           prefWidth="350" />
+
+                <Button text="Søg"
+                        onAction="#handleSearch" />
+
+                <Button text="Nulstil filter"
+                        onAction="#handleClearFilter" />
+
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="animalTable">
+            <columns>
+                <TableColumn fx:id="animalNumberColumn" text="Dyrenummer" prefWidth="120" />
+                <TableColumn fx:id="responderColumn" text="Responder" prefWidth="100" />
+                <TableColumn fx:id="groupNameColumn" text="Gruppe" prefWidth="110" />
+                <TableColumn fx:id="locationNameColumn" text="Lokation" prefWidth="110" />
+                <TableColumn fx:id="startWeightColumn" text="Startvægt" prefWidth="100" />
+                <TableColumn fx:id="endWeightColumn" text="Slutvægt" prefWidth="100" />
+                <TableColumn fx:id="feedIntakeColumn" text="Foderindtag" prefWidth="110" />
+                <TableColumn fx:id="fcrColumn" text="FCR" prefWidth="80" />
+                <TableColumn fx:id="activeColumn" text="Status" prefWidth="100" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Button text="Tilbage til hovedmenu"
+                    onAction="#handleBackToDashboard" />
+
+            <Button text="Opdater liste"
+                    onAction="#loadAnimals" />
+
+            <Button text="Stop registrering"
+                    onAction="#handleStopRegistration" />
+
+            <Button text="Opret ny gris"
+                    onAction="#handleOpenCreateAnimal" />
+
+            <Label fx:id="messageLabel"
+                   text=""
+                   style="-fx-text-fill: green;" />
+        </HBox>
+    </bottom>
+
+
+</BorderPane>

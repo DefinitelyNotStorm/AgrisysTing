@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.agrisysting.agrisysting.controller.EventController"
+            prefWidth="950"
+            prefHeight="600">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+
+            <Label text="Hændelser"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+            <Label text="Her vises hændelser for grisene, fx sygdom, observation eller stop af registrering." />
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="eventTable">
+            <columns>
+                <TableColumn fx:id="eventIdColumn" text="Event ID" prefWidth="100" />
+                <TableColumn fx:id="animalIdColumn" text="Animal ID" prefWidth="100" />
+                <TableColumn fx:id="eventTypeColumn" text="Type" prefWidth="150" />
+                <TableColumn fx:id="eventDescriptionColumn" text="Beskrivelse" prefWidth="400" />
+                <TableColumn fx:id="eventDateColumn" text="Dato" prefWidth="150" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Button text="Tilbage til hovedmenu"
+                    onAction="#handleBackToDashboard" />
+
+            <Button text="Opdater liste"
+                    onAction="#loadEvents" />
+
+            <Label fx:id="messageLabel"
+                   text=""
+                   style="-fx-text-fill: green;" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

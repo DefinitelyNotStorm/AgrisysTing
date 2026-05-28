@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.agrisysting.agrisysting.controller.AnalysisController"
+            prefWidth="700"
+            prefHeight="500">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+
+            <Label text="Analyse"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+            <Label text="Her vises simple nøgletal ud fra grisedata i databasen." />
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="20" right="40" bottom="20" left="40"/>
+            </padding>
+
+            <Label fx:id="totalAnimalsLabel"
+                   text="Antal grise i alt:"
+                   style="-fx-font-size: 18px;" />
+
+            <Label fx:id="activeAnimalsLabel"
+                   text="Aktive grise:"
+                   style="-fx-font-size: 18px;" />
+
+            <Label fx:id="inactiveAnimalsLabel"
+                   text="Inaktive grise:"
+                   style="-fx-font-size: 18px;" />
+
+            <Separator />
+
+            <Label fx:id="averageFcrLabel"
+                   text="Gennemsnitlig FCR:"
+                   style="-fx-font-size: 18px;" />
+
+            <Label fx:id="averageStartWeightLabel"
+                   text="Gennemsnitlig startvægt:"
+                   style="-fx-font-size: 18px;" />
+
+            <Label fx:id="averageEndWeightLabel"
+                   text="Gennemsnitlig slutvægt:"
+                   style="-fx-font-size: 18px;" />
+
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Button text="Tilbage til hovedmenu"
+                    onAction="#handleBackToDashboard" />
+
+            <Button text="Opdater analyse"
+                    onAction="#loadAnalysis" />
+
+            <Label fx:id="messageLabel"
+                   text=""
+                   style="-fx-text-fill: green;" />
+        </HBox>
+    </bottom>
+
+</BorderPane>

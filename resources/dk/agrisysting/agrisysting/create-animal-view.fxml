@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="dk.agrisysting.agrisysting.controller.CreateAnimalController"
+      spacing="10"
+      alignment="CENTER"
+      prefWidth="500"
+      prefHeight="650">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <Label text="Opret ny gris"
+           style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+    <TextField fx:id="animalNumberField" promptText="Dyrenummer fx DK1006" maxWidth="300" />
+    <TextField fx:id="responderField" promptText="Responder fx R1" maxWidth="300" />
+    <TextField fx:id="groupNameField" promptText="Gruppe fx Gruppe A" maxWidth="300" />
+    <TextField fx:id="locationNameField" promptText="Lokation fx Sektion 1" maxWidth="300" />
+
+    <TextField fx:id="startWeightField" promptText="Startvægt kg fx 20.5" maxWidth="300" />
+    <TextField fx:id="endWeightField" promptText="Slutvægt kg fx 45.2" maxWidth="300" />
+    <TextField fx:id="weightGainField" promptText="Vægtøgning kg fx 24.7" maxWidth="300" />
+    <TextField fx:id="feedIntakeField" promptText="Foderindtag kg fx 60.3" maxWidth="300" />
+    <TextField fx:id="fcrField" promptText="FCR fx 2.44" maxWidth="300" />
+
+    <TextField fx:id="startDayField" promptText="Startdato fx 2026-04-01" maxWidth="300" />
+    <TextField fx:id="completedDaysField" promptText="Dage i test fx 30" maxWidth="300" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Opret gris"
+                onAction="#handleCreateAnimal"
+                prefWidth="140" />
+
+        <Button text="Tilbage"
+                onAction="#handleBackToAnimals"
+                prefWidth="140" />
+    </HBox>
+
+    <Label fx:id="messageLabel"
+           text=""
+           style="-fx-text-fill: red;" />
+
+</VBox>

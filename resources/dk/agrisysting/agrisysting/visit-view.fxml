@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="dk.agrisysting.agrisysting.controller.VisitController"
+            prefWidth="950"
+            prefHeight="600">
+
+    <top>
+        <VBox spacing="10">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+
+            <Label text="Visits / Målinger"
+                   style="-fx-font-size: 26px; -fx-font-weight: bold;" />
+
+            <Label text="Her vises besøg og målinger fra Visit tabellen i databasen." />
+        </VBox>
+    </top>
+
+    <center>
+        <TableView fx:id="visitTable">
+            <columns>
+                <TableColumn fx:id="visitIdColumn" text="Visit ID" prefWidth="100" />
+                <TableColumn fx:id="animalIdColumn" text="Animal ID" prefWidth="100" />
+                <TableColumn fx:id="visitTimeColumn" text="Tidspunkt" prefWidth="200" />
+                <TableColumn fx:id="durationColumn" text="Varighed sek." prefWidth="130" />
+                <TableColumn fx:id="weightColumn" text="Vægt gram" prefWidth="130" />
+                <TableColumn fx:id="feedIntakeColumn" text="Foder gram" prefWidth="130" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="20" bottom="20" left="20"/>
+            </padding>
+
+            <Button text="Tilbage til hovedmenu"
+                    onAction="#handleBackToDashboard" />
+
+            <Button text="Opdater liste"
+                    onAction="#loadVisits" />
+
+            <Label fx:id="messageLabel"
+                   text=""
+                   style="-fx-text-fill: green;" />
+        </HBox>
+    </bottom>
+
+</BorderPane>
